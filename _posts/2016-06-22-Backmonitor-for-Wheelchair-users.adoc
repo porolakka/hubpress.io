@@ -1,0 +1,151 @@
+= 車椅子向けバックモニターの製作と実証
+
+:hp-alt-title: Backmonitor for Wheelchair users
+:hp-image: backmonitor/3.jpg
+:hp-tags: camera,RaspberryPi,Backmonitor
+
+車椅子向けバックモニターの製作および実証
+
+DIY Backmonitor
+
+== 概要
+
+=== 原点
+「車椅子で通勤中に後ろを確認したい」というニーズがあった
+
+=== 現状
+* バックモニターはあるものの、車載カメラなど12V電源が必要なもので車椅子には搭載しづらい。
+* iPhoneを使って見たい人、iPhoneは使わずに専用品がほしい人など、人によってほしいインターフェースが違う。
+
+=== 製作
+* link:https://porolakka.github.io/hubpress.io/2016/03/27/D-I-Y-security-camera-abstract.html[見守りカメラの技術]を応用し、小型ディスプレイやタッチパネル、iPhoneやAndroidに配信可能なバックモニターシステムを製作
+* 3Dプリンターを用い、各自の車椅子や身体の状況にあった筐体・アタッチメントを作った
+
+==== 材料
+
+===== カメラ部分（ディスプレイ一体型・配信型共通）
+
+* Raspberry Pi 2 Model B
+
+image:https://upload.wikimedia.org/wikipedia/commons/3/31/Raspberry_Pi_2_Model_B_v1.1_top_new_%28bg_cut_out%29.jpg[caption="Figure 1: ", title="A mountain sunset", alt="Sunset", width=300, height=200]  
+
+** Raspbianをインストールし、motioneye-jp（英語なら本家motioneye）を導入
+** 撮影とアップロードのみなら Raspberry Pi Model するが、反応が遅いし、320*240 pixels の画像について毎秒2フレーム程度しか配信できない。電源問題とライブ配信の負荷に耐えられるか不安だったので、Raspberry Pi 2 Model B 以上を推奨。
+
+* microSDカード
+** 8GBで動作し、16GBぐらいあればアップデートのときに余裕あり。相性問題があるのでlink:http://elinux.org/RPi_SD_cards[SDカードの動作確認をまとめたサイト]で購入前に確認すべし。
+** だいたい800円前後。
+
+* motioneye-jp
+
+image:motioneye_jpn.jpg[width=320]
+
+** 動体検知ソフトウェアの「link:http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome[motion]」をWebベースでコントロールする「link:https://github.com/ccrisan/motioneye[motionEye]」の日本語化を行い、「link:https://github.com/porolakka/motioneye-jp[motionEye-jp]」として公開したもの（link:http://porolakka.github.io/EyeAnchor/[解説ページはこちら]）。
+** バックモニター向けにカメラ映像を左右反転させるため、CSS transformを使った。
+
+* Webカメラ
+** 30万画素〜100万画素で十分。
+** 電気屋さんで4,000円あれば買えるはず。
+
+===== ディスプレイ一体型
+
+* SPI接続2.2インチ液晶
+** 小型な液晶を求めるならこれ。ただし、SPI接続のため書き換え速度が遅い。
+** 導入には手順が必要。詳しくはラズパイマガジン2015年春号を見よ。
+** aitendoにて2,000円程度
+
+image:http://www.aitendo.com/data/aitendo/product/20140909_432580.png[width=320]
+
+* HDMI接続タッチ式5インチ液晶
+** 大型で滑らかに動く液晶を求めるならこれ。ただし、タッチ式のため少し暗い。
+** 導入にはlink:http://www.elecrow.com/wiki/index.php?title=HDMI_Interface_5_Inch_800x480_TFT_Display[製造元で配布するプログラム]の実行が必要。
+** 日本で売っていない場合、Aliexpress.comなどで仕入れる必要あり。
+
+image:http://www.elecrow.com/wiki/images/5/5d/HDMI_Interface_5_Inch_800x480_TFT_Display.jpg[width=320]
+
+===== 配信型
+
+* Wi-Fiドングル (Raspberry Pi 3 の場合は不要)
+** けっこう相性の問題があるので、link:http://www.amazon.co.jp/exec/obidos/ASIN/B00ESA34GA/denshikosaku-22/[Planex製GW-USNANO2A]など動作確認が取れているものを買う方が無難。秋月電子でもlink:http://akizukidenshi.com/catalog/g/gM-10063/[動作確認済みのドングル]が販売されている。
+** だいたい1,000円前後。
+
+=== 製作風景
+
+==== 車椅子バックモニター専用カバーの3Dデータ
+* アイ・コラボレーション神戸にて作成
+* 3D CADソフトウェア「Fusion 360」を使用
+* 落としても壊れない、雨が降っても水が入らないように設計
+
+image:backmonitor/1.jpg[width=320]
+
+==== システム概念図
+* ウェブカメラの映像を毎秒10フレームの写真として記録し、ウェブブラウザに表示
+* ディスプレイの種類や大きさに依存せず、iPhoneなどへの配信もウェブから操作可能
+
+image:backmonitor/2.png[width=320]
+
+==== 3Dプリンター「3D Systems Cube 3」を用いて3Dデータを出力
+* 3Dプリンターの利用にあたっては、通勤等生活支援機器の先進的取り組みとして「中央区赤い羽根地域づくり助成」より助成をいただきました
+
+image:backmonitor/3.jpg[width=320]
+
+* 出力した3Dプリント品を水に入れ、耐水ペーパー等で加工し、滑らかにします
+
+image:backmonitor/4.jpg[width=320]
+
+* 出力した3Dデータと自作した電子機器を仮組みした様子
+
+image:backmonitor/5.jpg[width=320]
+
+* 分割出力した3Dデータを組み合わせ、パテと防水フィルムで張り合わせます
+
+image:backmonitor/6.jpg[width=320]
+
+==== カバーの意義
+* 当初（上）と比較して、のバックモニター（下）の耐衝撃・防塵・防水性能が格段に高まりました
+
+image:backmonitor/7.png[width=320]
+image:backmonitor/8.png[width=320]
+
+=== 使用の様子
+* 自走の際に手が干渉しないよう、着脱可能なフレームを取り付けています。
+
+image:backmonitor/9.png[width=320]
+
+* フレームを使うことで目線が下になりすぎないという利点があります
+
+image:backmonitor/10.jpg[width=320]
+
+
+=== 出展の様子
+
+1. 神戸ITフェスティバル（27年11月7日）にプロトタイプを展示。
+このときは3Dプリンターが手元にないため、配線がむき出しになっています
+
+image:backmonitor/11.png[width=320]
+
+
+
+
+1. 神戸ユニバーサルデザインフェア（28年3月20日）に先進的な取り組みとして展示
+
+image:backmonitor/12.png[width=320]
+
+
+=== ユーザー評価の様子
+
+==== アイ・コラボレーションでのユーザー評価（28年3月22日）
+
+image:backmonitor/13.png[width=320]
+image:backmonitor/14.png[width=320]
+
+* 滋賀県草津市にあるNPO「アイ・コラボレーション」にて、ストレッチャーを利用しているメンバーの方にバックモニターの運用可能性について評価を行っていただきました
+* USB接続のウェブカメラを利用しているため、アングルの変更が容易なことが評価されました。周囲の方がカメラの向きを変えることで、後ろだけではなく前や左右に変えたり、高い場所に持って行ったり、ストレッチャーの下に向けたりと柔軟な運用が可能です。
+* また、iPhoneを利用されているため、ストリーム配信で対応出来ることも高評価でした。
+
+=== 今後の課題
+image:backmonitor/15.jpg[width=640]
+
+1. 取り付け方法によっては視線が下を向いてしまう
+** 電動車椅子をご利用の方でバックモニターの取り付け位置が下になると、後方確認のためにモニターを見ると視線が下に向いてしまいます。
+** 慣れれば問題ないとのことですが、より安全なバックモニターを実現するためにウェアラブルデバイスの活用も考えています。
