@@ -1,0 +1,119 @@
+= 概要：格安モバイル回線向けのウェブ見守りカメラの制作
+
+:hp-alt-title: DIY security camera (abstract)
+:hp-image: https://porolakka.github.io/hubpress.io/images/mimamori_cover.jpg
+:hp-tags: camera,RaspberryPi
+
+これはインターネット回線未導入の住宅に対する遠隔見守りカメラ開発と設置の記録である。
+
+DIY security camera with web interface settled into NOT-wired house.
+
+== 概要
+
+=== 原点
+「動体検知ができてメール通知のできる遠隔見守りカメラ」のニーズがあった
+
+1. 空き巣が頻発、身に覚えのない門扉の開放
+2. 初期の認知症がある家族の見守り
+
+=== 現状
+「月1GB・480円未満の低料金」で「3G回線のような低速回線でも動き」なおかつ「簡単な設置が可能」という要求にフィットする解決策がないため自作を決意
+
+=== 製作
+撮影はRaspberry Piに動体検知機能を組み込んだ見守りカメラのシステムを構築し、通信はIoTに最適化されたSoracomを採用することで導入コストと運用コストを抑えた
+
+==== 材料
+
+===== 見守りカメラ部分
+
+* Raspberry Pi 2 Model B
+
+image:https://upload.wikimedia.org/wikipedia/commons/3/31/Raspberry_Pi_2_Model_B_v1.1_top_new_%28bg_cut_out%29.jpg[width=320]
+
+** Raspbianをインストールし、motioneye-jp（英語なら本家motioneye）を導入
+
+** 撮影とアップロードのみなら Raspberry Pi Model するが、反応が遅いし、320*240 pixels の画像について毎秒2フレーム程度しか配信できない。電源問題とライブ配信の負荷に耐えられるか不安だったので、Raspberry Pi 2 Model B 以上を推奨。
+
+* microSDカード
+
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/MicroSDHC_8GB_with_Eurocent.jpg/1024px-MicroSDHC_8GB_with_Eurocent.jpg[width=320]
+
+** 8GBで動作し、16GBぐらいあればアップデートのときに余裕あり。相性問題があるのでlink:http://elinux.org/RPi_SD_cards[SDカードの動作確認をまとめたサイト]で購入前に確認すべし。
+
+** だいたい800円前後。
+
+* USBメモリー
+
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Kingston_DataTraveler_100_G2_16GB.JPG/1024px-Kingston_DataTraveler_100_G2_16GB.JPG[width=320]
+
+** システムと記憶媒体を分けることで容量の追加や交換が容易になる。
+** だいたい16GBあれば屋内・屋外の動体検知を2ヶ月くらい保存できる。
+** FATまたはFAT32でフォーマットしておくこと。
+** だいたい1,500円前後。
+
+* motioneye-jp
+
+image:https://porolakka.github.io/hubpress.io/images/motioneye_jpn.jpg[width=320]
+
+** 動体検知ソフトウェアの「link:http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome[motion]」をWebベースでコントロールする「link:https://github.com/ccrisan/motioneye[motionEye]」の日本語化を行い、「link:https://github.com/porolakka/motioneye-jp[motionEye-jp]」として公開したもの（link:http://porolakka.github.io/EyeAnchor/[解説ページはこちら]）。
+
+* Wi-Fiドングル (Raspberry Pi 3 の場合は不要)
+
+image:https://upload.wikimedia.org/wikipedia/commons/5/5b/Karta_WiFi_USB_%2801%29_-_DSC05145_v4.jpg[width=320]
+
+** けっこう相性の問題があるので、link:http://www.amazon.co.jp/exec/obidos/ASIN/B00ESA34GA/denshikosaku-22/[Planex製GW-USNANO2A]など動作確認が取れているものを買う方が無難。秋月電子でもlink:http://akizukidenshi.com/catalog/g/gM-10063/[動作確認済みのドングル]が販売されている。
+** だいたい1,000円前後。
+
+* Webカメラ
+
+image:https://upload.wikimedia.org/wikipedia/commons/c/c4/Webcam.jpg[width=320]
+
+** 30万画素〜100万画素で十分。
+** 電気屋さんで4,000円あれば買えるはず。
+
+* IPカメラ（屋外で必要なら。ただしAC電源必須）
+
+image:http://www.wanscam.com/upfile/2014/11/05/20141105103158_147.jpg[width=320]
+
+** 暗視や防水などの機能を独自で作るよりは、中国製の安いIPカメラを使う方が早い。
+
+** 8,000円くらいで売っているので、予算や独自開発の心意気と相談して決めてください。
+
+===== 通信機器
+
+* モバイルルーター
+
+image:https://upload.wikimedia.org/wikipedia/commons/9/97/Huawei_E5.jpg[width=320]
+
+** docomoの3Gまたは4G/LTEの電波を拾うWi-Fiモバイルルーターならなんでも良い。
+** USBドングル（Wi-FiではなくUSBで通信するタイプ）はLinuxのシステム側をいじることになるのでオススメしない。
+** 3G対応型が8,000円くらいから、4G/LTE対応型が12,000〜20,000ぐらいで販売されている。
+
+=== 利点
+状況変化に合わせた柔軟なシステム構築が可能
+
+1. 固定回線のない家庭にも即日導入できる
+2. 撮影した画像をメール通知またはクラウドから閲覧できる
+3. ngrokを経由することでライブカメラとして直接アクセスできる
+4. 既存のWebカメラやIPカメラと組み合わせることができる
+5. 遠隔地（外部）からの設定変更が容易
+
+=== 欠点
+プラグアンドプレイではない
+
+1. カメラの追加や設定変更はウェブページへのアクセスが必要
+2. 外部からアクセスするためのURLを発行するサービスは無料だが、覚えやすい固定のアドレスを得るためには追加料金が月500〜1000円程度かかる
+
+=== 結果
+image:http://porolakka.github.io/EyeAnchor/img/eyeanchor_prototype.jpg[width=320]
+
+3世帯に5箇所のウェブ見守りカメラを導入済み、切断などのトラブルなく概ね好評
+
+=== 実例
+状況変化への柔軟性が求められる
+
+1. 認知症のある方の家族から縁側と居室内部への設置要望
+2. 屋外の監視には既成品の安価なIPカメラを利用
+
+=== 今後
+* 電力を引いていない山間部での運用が希望されたため、ソーラー電源での動作を目指す
