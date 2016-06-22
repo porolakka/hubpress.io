@@ -2,7 +2,22 @@
   "meta": {
     "username": "porolakka",
     "repositoryName": "hubpress.io",
-    "branch": "gh-pages"
+    "branch": "gh-pages",
+    "cname": "0x0026.info",
+    "delay": "500"
+  },
+  "site": {
+    "title": "A&P.info",
+    "description": "Posts about some projects I'm working on.",
+    "logo": "http://0x0026.info/images/apinfo_logo.png",
+    "cover": "http://0x0026.info/images/cover_dark.jpg",
+    "disqus": "apinfo"
+  },
+  "socialnetwork": {
+    "email": "",
+    "twitter": "https://twitter.com/porolakka",
+    "facebook": "https://www.facebook.com/akira.ochiai",
+    "github": "https://github.com/porolakka"
   },
   "theme": {
     "name": "ghostium"
