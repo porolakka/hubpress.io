@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>車椅子向けバックモニターの製作と実証</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="車椅子向けバックモニターの製作と実証">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="車椅子向けバックモニターの製作と実証">
+    <meta property="og:description" content="">
+
+    <!-- <meta name="twitter:site" content="">
+
+<meta name="twitter:creator" content="">
+
+<meta name="google-site-verification" content="">
+
+<meta property="fb:admins" content="">
+ -->
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="//0x0026.info/themes/ghostium/assets/css/main.min.css?v=1466562760826"/>
+    <link rel="stylesheet" href="//0x0026.info/themes/ghostium/assets/css/custom.css?v=1466562760826"/>
+    <link rel="stylesheet" href="//0x0026.info/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1466562760826"/>
+
+
+
+
+    <script type="text/javascript">
+      var ga_ua = 'UA-XXXXX-X';
+      
+      var disqus_shortname = 'example';
+      
+      var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="//0x0026.info/themes/ghostium/assets/js/head-scripts.min.js?v=1466562760826"></script>
+
+    <link rel="canonical" href="http://0x0026.info/2016/06/22/Backmonitor-for-Wheelchair-users.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="A&amp;P.info" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="車椅子向けバックモニターの製作と実証" />
+    <meta property="og:description" content="車椅子向けバックモニターの製作および実証 DIY Backmonitor 概要 原点 「車椅子で通勤中に後ろを確認したい」というニーズがあった 現状 バックモニターはあるものの、車載カメラなど12V電源が必要なもので車椅子には搭載しづらい。 iPhoneを使って見たい人、iPhoneは使わずに専用品がほしい人など、人によってほしいインターフェースが違う。 製作 見守りカメラの技術を応用し、小型ディスプレイやタッチパネル、iPhoneやAndroidに配信可能なバックモニターシステムを製作 3Dプリンターを用い、各自の車椅子や身体の状況にあった筐体・アタッチメントを作った 材料 カメラ部分（ディスプレイ一体型・配信型共通） Raspberry Pi 2 Model B Raspbianをイン" />
+    <meta property="og:url" content="http://0x0026.info/2016/06/22/Backmonitor-for-Wheelchair-users.html" />
+    <meta property="article:tag" content="camera" />
+    <meta property="article:tag" content="RaspberryPi" />
+    <meta property="article:tag" content="Backmonitor" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="車椅子向けバックモニターの製作と実証" />
+    <meta name="twitter:description" content="車椅子向けバックモニターの製作および実証 DIY Backmonitor 概要 原点 「車椅子で通勤中に後ろを確認したい」というニーズがあった 現状 バックモニターはあるものの、車載カメラなど12V電源が必要なもので車椅子には搭載しづらい。 iPhoneを使って見たい人、iPhoneは使わずに専用品がほしい人など、人によってほしいインターフェースが違う。 製作 見守りカメラの技術を応用し、小型ディスプレイやタッチパネル、iPhoneやAndroidに配信可能なバックモニターシステムを製作 3Dプリンターを用い、各自の車椅子や身体の状況にあった筐体・アタッチメントを作った 材料 カメラ部分（ディスプレイ一体型・配信型共通） Raspberry Pi 2 Model B Raspbianをイン" />
+    <meta name="twitter:url" content="http://0x0026.info/2016/06/22/Backmonitor-for-Wheelchair-users.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="A&amp;P.info" href="http://0x0026.info/rss/" />
+  </head>
+  <body class="post-template tag-camera tag-Raspberry-Pi tag-Backmonitor">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+    <nav tabindex="-1" class="drawer">
+      <div class="drawer-container">
+        <!--.drawer-search(role="search")-->
+        <ul role="navigation" class="drawer-list">
+          
+          <li class="drawer-list-item">
+            <a href="http://0x0026.info" data-pjax>
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          <!-- <li class="drawer-list-item">
+            <a href="http://0x0026.info" title="A&amp;P.info" data-pjax>
+              <i class="fa fa-list-alt"></i>All posts
+            </a>
+          </li> -->
+          <!--
+          <li class="drawer-list-item">
+            <a href="http://0x0026.info/rss/">
+              <i class="fa fa-rss"></i>Subscribe to Feed
+            </a>
+          </li>
+          -->
+          <li class="drawer-list-divider"></li>
+          <li class="drawer-list-item drawer-list-title">
+            Follow me
+          </li>
+          
+          
+          <li class="drawer-list-item">
+            <a href="https://twitter.com/porolakka" title="Twitter" target="_blank">
+              <i class="fa fa-twitter"></i>Twitter
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://github.com/porolakka" title="Github" target="_blank">
+              <i class="fa fa-github"></i>Github
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://www.facebook.com/akira.ochiai" title="Facebook" target="_blank">
+              <i class="fa fa-facebook"></i>Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-camera tag-Raspberry-Pi tag-Backmonitor">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2016-06-22" itemprop="datePublished">
+                  12 hours ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                  <span class="tags"><i class="fa fa-tags"></i>
+                      <span>
+                      <a href="http://0x0026.info/tag/camera/">camera</a>, <a href="http://0x0026.info/tag/Raspberry-Pi/">RaspberryPi</a>, <a href="http://0x0026.info/tag/Backmonitor/">Backmonitor</a></span>
+                  </span>
+                </li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="http://0x0026.info/2016/06/22/Backmonitor-for-Wheelchair-users.html" itemprop="url" data-pjax title="車椅子向けバックモニターの製作と実証">車椅子向けバックモニターの製作と実証</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="" class="post-author-avatar">
+                  <img src="https://avatars.githubusercontent.com/u/10286653?v&#x3D;3" alt="AKIRA">
+                </a>
+              <div class="post-author-info">
+                <a href="" class="post-author-name">
+                  AKIRA
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>車椅子向けバックモニターの製作および実証</p>
+</div>
+<div class="paragraph">
+<p>DIY Backmonitor</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__">概要</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="___2">原点</h3>
+<div class="paragraph">
+<p>「車椅子で通勤中に後ろを確認したい」というニーズがあった</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___3">現状</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>バックモニターはあるものの、車載カメラなど12V電源が必要なもので車椅子には搭載しづらい。</p>
+</li>
+<li>
+<p>iPhoneを使って見たい人、iPhoneは使わずに専用品がほしい人など、人によってほしいインターフェースが違う。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___4">製作</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://porolakka.github.io/hubpress.io/2016/03/27/D-I-Y-security-camera-abstract.html">見守りカメラの技術</a>を応用し、小型ディスプレイやタッチパネル、iPhoneやAndroidに配信可能なバックモニターシステムを製作</p>
+</li>
+<li>
+<p>3Dプリンターを用い、各自の車椅子や身体の状況にあった筐体・アタッチメントを作った</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="___5">材料</h4>
+<div class="sect4">
+<h5 id="___6">カメラ部分（ディスプレイ一体型・配信型共通）</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Raspberry Pi 2 Model B</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Raspberry_Pi_2_Model_B_v1.1_top_new_%28bg_cut_out%29.jpg" alt="Sunset" width="300" height="200" title="A mountain sunset"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Raspbianをインストールし、motioneye-jp（英語なら本家motioneye）を導入</p>
+</li>
+<li>
+<p>撮影とアップロードのみなら Raspberry Pi Model するが、反応が遅いし、320*240 pixels の画像について毎秒2フレーム程度しか配信できない。電源問題とライブ配信の負荷に耐えられるか不安だったので、Raspberry Pi 2 Model B 以上を推奨。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>microSDカード</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>8GBで動作し、16GBぐらいあればアップデートのときに余裕あり。相性問題があるので<a href="http://elinux.org/RPi_SD_cards">SDカードの動作確認をまとめたサイト</a>で購入前に確認すべし。</p>
+</li>
+<li>
+<p>だいたい800円前後。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>motioneye-jp</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/motioneye_jpn.jpg" alt="motioneye jpn.jpg" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>動体検知ソフトウェアの「<a href="http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome">motion</a>」をWebベースでコントロールする「<a href="https://github.com/ccrisan/motioneye">motionEye</a>」の日本語化を行い、「<a href="https://github.com/porolakka/motioneye-jp">motionEye-jp</a>」として公開したもの（<a href="http://porolakka.github.io/EyeAnchor/">解説ページはこちら</a>）。</p>
+</li>
+<li>
+<p>バックモニター向けにカメラ映像を左右反転させるため、CSS transformを使った。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Webカメラ</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>30万画素〜100万画素で十分。</p>
+</li>
+<li>
+<p>電気屋さんで4,000円あれば買えるはず。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="___7">ディスプレイ一体型</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>SPI接続2.2インチ液晶</p>
+<div class="ulist">
+<ul>
+<li>
+<p>小型な液晶を求めるならこれ。ただし、SPI接続のため書き換え速度が遅い。</p>
+</li>
+<li>
+<p>導入には手順が必要。詳しくはラズパイマガジン2015年春号を見よ。</p>
+</li>
+<li>
+<p>aitendoにて2,000円程度</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://www.aitendo.com/data/aitendo/product/20140909_432580.png" alt="20140909 432580.png" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HDMI接続タッチ式5インチ液晶</p>
+<div class="ulist">
+<ul>
+<li>
+<p>大型で滑らかに動く液晶を求めるならこれ。ただし、タッチ式のため少し暗い。</p>
+</li>
+<li>
+<p>導入には<a href="http://www.elecrow.com/wiki/index.php?title=HDMI_Interface_5_Inch_800x480_TFT_Display">製造元で配布するプログラム</a>の実行が必要。</p>
+</li>
+<li>
+<p>日本で売っていない場合、Aliexpress.comなどで仕入れる必要あり。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://www.elecrow.com/wiki/images/5/5d/HDMI_Interface_5_Inch_800x480_TFT_Display.jpg" alt="HDMI Interface 5 Inch 800x480 TFT Display.jpg" width="320"></span></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="___8">配信型</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Wi-Fiドングル (Raspberry Pi 3 の場合は不要)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>けっこう相性の問題があるので、<a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00ESA34GA/denshikosaku-22/">Planex製GW-USNANO2A</a>など動作確認が取れているものを買う方が無難。秋月電子でも<a href="http://akizukidenshi.com/catalog/g/gM-10063/">動作確認済みのドングル</a>が販売されている。</p>
+</li>
+<li>
+<p>だいたい1,000円前後。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___9">製作風景</h3>
+<div class="sect3">
+<h4 id="__3d">車椅子バックモニター専用カバーの3Dデータ</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>アイ・コラボレーション神戸にて作成</p>
+</li>
+<li>
+<p>3D CADソフトウェア「Fusion 360」を使用</p>
+</li>
+<li>
+<p>落としても壊れない、雨が降っても水が入らないように設計</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/1.jpg" alt="1.jpg" width="320"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="___10">システム概念図</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>ウェブカメラの映像を毎秒10フレームの写真として記録し、ウェブブラウザに表示</p>
+</li>
+<li>
+<p>ディスプレイの種類や大きさに依存せず、iPhoneなどへの配信もウェブから操作可能</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/2.png" alt="2.png" width="320"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3d_3d_systems_cube_3_3d">3Dプリンター「3D Systems Cube 3」を用いて3Dデータを出力</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>3Dプリンターの利用にあたっては、通勤等生活支援機器の先進的取り組みとして「中央区赤い羽根地域づくり助成」より助成をいただきました</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/3.jpg" alt="3.jpg" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>出力した3Dプリント品を水に入れ、耐水ペーパー等で加工し、滑らかにします</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/4.jpg" alt="4.jpg" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>出力した3Dデータと自作した電子機器を仮組みした様子</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/5.jpg" alt="5.jpg" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>分割出力した3Dデータを組み合わせ、パテと防水フィルムで張り合わせます</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/6.jpg" alt="6.jpg" width="320"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="___11">カバーの意義</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>当初（上）と比較して、のバックモニター（下）の耐衝撃・防塵・防水性能が格段に高まりました</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/7.png" alt="7.png" width="320"></span>
+<span class="image"><img src="http://0x0026.info/images/backmonitor/8.png" alt="8.png" width="320"></span></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___12">使用の様子</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>自走の際に手が干渉しないよう、着脱可能なフレームを取り付けています。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/9.png" alt="9.png" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>フレームを使うことで目線が下になりすぎないという利点があります</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/10.jpg" alt="10.jpg" width="320"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___13">出展の様子</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>神戸ITフェスティバル（27年11月7日）にプロトタイプを展示。
+このときは3Dプリンターが手元にないため、配線がむき出しになっています</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/11.png" alt="11.png" width="320"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>神戸ユニバーサルデザインフェア（28年3月20日）に先進的な取り組みとして展示</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/12.png" alt="12.png" width="320"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___14">ユーザー評価の様子</h3>
+<div class="sect3">
+<h4 id="__28_3_22">アイ・コラボレーションでのユーザー評価（28年3月22日）</h4>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/13.png" alt="13.png" width="320"></span>
+<span class="image"><img src="http://0x0026.info/images/backmonitor/14.png" alt="14.png" width="320"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>滋賀県草津市にあるNPO「アイ・コラボレーション」にて、ストレッチャーを利用しているメンバーの方にバックモニターの運用可能性について評価を行っていただきました</p>
+</li>
+<li>
+<p>USB接続のウェブカメラを利用しているため、アングルの変更が容易なことが評価されました。周囲の方がカメラの向きを変えることで、後ろだけではなく前や左右に変えたり、高い場所に持って行ったり、ストレッチャーの下に向けたりと柔軟な運用が可能です。</p>
+</li>
+<li>
+<p>また、iPhoneを利用されているため、ストリーム配信で対応出来ることも高評価でした。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___15">今後の課題</h3>
+<div class="paragraph">
+<p><span class="image"><img src="http://0x0026.info/images/backmonitor/15.jpg" alt="15.jpg" width="640"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>取り付け方法によっては視線が下を向いてしまう</p>
+<div class="ulist">
+<ul>
+<li>
+<p>電動車椅子をご利用の方でバックモニターの取り付け位置が下になると、後方確認のためにモニターを見ると視線が下に向いてしまいます。</p>
+</li>
+<li>
+<p>慣れれば問題ないとのことですが、より安全なバックモニターを実現するためにウェアラブルデバイスの活用も考えています。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="" class="post-author-avatar">
+                  <img itemprop="image" src="https://avatars.githubusercontent.com/u/10286653?v&#x3D;3" alt="AKIRA">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="" itemprop="url" class="post-author-name">
+                  <span itemprop="name">AKIRA</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">June 22, 2016</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+      <p><small>Copyright &copy; <span itemprop="copyrightHolder">A&amp;P.info</span>. 2016. All Rights Reserved.</small></p>
+      <p><small><a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="http://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+      <p><small>Adapted by <a href="https://twitter.com/mgreau">Maxime Gréau</a></small></p>
+      <p><small>Published with <a href="http://hubpress.io">HubPress</a></small></p>
+    </footer>
+  </div>
+</section>
+
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_shortname = 'apinfo'; // required: replace example with your forum shortname
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script src="//0x0026.info/themes/ghostium/assets/js/foot-scripts.min.js?v=1466562760826"></script>
+
+
+  </body>
+</html>
