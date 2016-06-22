@@ -1,7 +1,7 @@
 = 車椅子向けバックモニターの製作と実証
 
 :hp-alt-title: Backmonitor for Wheelchair users
-:hp-image: backmonitor/3.jpg
+:hp-image: http://0x0026.info/images/backmonitor/3.jpg
 :hp-tags: camera,RaspberryPi,Backmonitor
 
 車椅子向けバックモニターの製作および実証
