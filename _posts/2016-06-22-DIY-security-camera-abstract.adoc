@@ -1,7 +1,7 @@
 = 概要：格安モバイル回線向けのウェブ見守りカメラの制作
 
 :hp-alt-title: DIY security camera (abstract)
-:hp-image: https://porolakka.github.io/hubpress.io/images/mimamori_cover.jpg
+:hp-image: http://0x0026.info/images/mimamori_cover.jpg
 :hp-tags: camera,RaspberryPi
 
 これはインターネット回線未導入の住宅に対する遠隔見守りカメラ開発と設置の記録である。
@@ -53,7 +53,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Kingston_DataTra
 
 * motioneye-jp
 
-image:https://porolakka.github.io/hubpress.io/images/motioneye_jpn.jpg[width=320]
+image:motioneye_jpn.jpg[width=320]
 
 ** 動体検知ソフトウェアの「link:http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome[motion]」をWebベースでコントロールする「link:https://github.com/ccrisan/motioneye[motionEye]」の日本語化を行い、「link:https://github.com/porolakka/motioneye-jp[motionEye-jp]」として公開したもの（link:http://porolakka.github.io/EyeAnchor/[解説ページはこちら]）。
 
