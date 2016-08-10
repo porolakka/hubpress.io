@@ -11,37 +11,35 @@ Motoko is a name of space under railway viaduct in kobe-Motomachi famous for old
 
 == Demo
 
-. Standaloneギャラリー版
-.. http://ickobe.jp/test/motoko-vr/
-. （比較）YouTube再生リスト版
-.. https://www.youtube.com/playlist?list=PLsHOW8H7ZPsR80vhc1JWyPhrfiOD5Vwp8
+. link:http://ickobe.jp/test/motoko-vr/[Standaloneギャラリー版]
+. link:https://www.youtube.com/playlist?list=PLsHOW8H7ZPsR80vhc1JWyPhrfiOD5Vwp8[（比較）YouTube再生リスト版]
 
 == 要件
 
-. モトコ―の全天球映像を8時間連続して再生できること
+. *モトコ―の全天球映像を8時間連続して再生できること*
 .. 連続再生でPCが不安定になってはならない
-. インターネット環境のない地下ギャラリーのためスタンドアロンで動作すること
+. *インターネット環境のない地下ギャラリーのためスタンドアロンで動作すること*
 .. YouTube等のストリーミング配信は不可
-. ギャラリーの者はPC操作に不慣れなので極力操作を避け、電源スイッチオンで自動再生までできること
+. *ギャラリーの者はPC操作に不慣れなので極力操作を避け、電源スイッチオンで自動再生までできること*
 .. ソフトウェアによる手動再生は不可
 .. 映像切り替えも自動で行えること
 .. 風景が360度自動で回転するとベスト
-. モトコ―という場所を初めて見るお客さんのため、キャプションを表示すること
+. *モトコ―という場所を初めて見るお客さんのため、キャプションを表示すること*
 .. 説明文を見るためにマウス操作を必要としないこと
 
 == 採用した技術・構成
 
-. Googleのオープンソースライブラリ、*vrview*を採用し、HTMLでギャラリーを作成
+. *Googleのオープンソースライブラリ、`vrview`を採用し、HTMLでギャラリーを作成*
 .. 長時間安定して全天球映像を再生できる
 .. iframe内で動作し、URLに引数を付加することででサイズ・再生ファイル等の指定が容易
-. ノートPC上にHTTPサーバーを立ち上げ、スタンドアロンで動作するようにした
-. PCが起動するとnode.jsでHTMLサーバーが起動し、Firefoxで全画面表示させるようにした
+. *ノートPC上にHTTPサーバーを立ち上げ、スタンドアロンで動作するようにした*
+. *PCが起動するとnode.jsでHTMLサーバーが起動し、Firefoxで全画面表示させるようにした*
 .. 複数のタブで開くケースを考慮し、自動再生は見送った
 ... 代わりに動画か静止画を選べるシンプルな再生ボタンを配置した
-.. 映像の自動切り替えは*jquery.prettyPhoto*を採用
+.. 映像の自動切り替えは`jquery.prettyPhoto`を採用
 ... iframeに対応したギャラリーライブラリで、キャプションを表示することが可能
 .. 風景の自動回転は時間の関係で実装を見送った
-. キャプションは*jquery.prettyPhoto*で表現できた
+. *キャプションは`jquery.prettyPhoto`で表現できた*
 
 == 実際のコード
 
