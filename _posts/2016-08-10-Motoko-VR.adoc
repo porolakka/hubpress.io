@@ -4,7 +4,7 @@
 :hp-image: http://0x0026.info/images/motoko-vr/landing.jpg
 :hp-tags: 360,VR,Web
 
-アイ・コラボレーション神戸は元町高架通のギャラリーの依頼で（ディープな雰囲気で有名な）モトコ―を全天球映像に収め、こうべまちづくり会館で映像展示することになった。ノートパソコンとテレビをつなぎ、全天球映像のギャラリー機能をちょっとしたHTMLで実現できた。
+アイ・コラボレーション神戸は元町高架通のギャラリーの依頼で（ディープな雰囲気で有名な）モトコーを全天球映像に収め、こうべまちづくり会館で映像展示することになった。ノートパソコンとテレビをつなぎ、全天球映像のギャラリー機能をちょっとしたHTMLで実現できた。
 
 I'd made the Motoko VR Gallery with my laptop, TV and a little HTML cording.
 Motoko is a name of space under railway viaduct in kobe-Motomachi famous for old and deep atmosphere.
