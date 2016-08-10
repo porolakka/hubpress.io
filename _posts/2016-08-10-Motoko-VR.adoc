@@ -48,6 +48,6 @@ https://github.com/ickobe/motoko-vr
 
 == おまけ
 
-GitHubに416円で作れるVRゴーグルの展開図を載せておいた
+GitHubに43円で作れるVRゴーグルの展開図を載せておいた
 https://github.com/ickobe/vr-goggles-pattern
 image:motoko-vr/cardboard-out.png[width=320]
