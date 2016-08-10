@@ -14,6 +14,8 @@ Motoko is a name of space under railway viaduct in kobe-Motomachi famous for old
 . link:http://ickobe.jp/test/motoko-vr/[Standaloneギャラリー版]
 . link:https://www.youtube.com/playlist?list=PLsHOW8H7ZPsR80vhc1JWyPhrfiOD5Vwp8[（比較）YouTube再生リスト版]
 
+image:http://0x0026.info/images/motoko-vr/landing.jpg[展示風景]
+
 == 要件
 
 . *モトコ―の全天球映像を8時間連続して再生できること*
