@@ -1,4 +1,4 @@
-= モトコー全天球映像をオフラインのギャラリーに展示する
+= モトコー(元町高架)全天球映像をオフラインのギャラリーに展示する
 
 :hp-alt-title: Motoko VR
 :hp-image: http://0x0026.info/images/motoko-vr/landing.jpg
