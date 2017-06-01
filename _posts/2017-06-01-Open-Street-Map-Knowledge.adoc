@@ -1,0 +1,127 @@
+= 須磨海岸OSMマッピング調査
+
+:hp-alt-title: OpenStreetMapKnowledge
+:hp-image: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Openstreetmap_logo.svg/1024px-Openstreetmap_logo.svg.png
+:hp-tags: OSM
+
+須磨海岸周辺のマッピングを行うにあたり、参考になる情報をまとめます。(随時追加）
+
+In mapping around the Suma coast, we will summarize the information to be helpful. (Added as needed)
+
+== OpenStreetMap (OSM) について
+
+=== 公式サイト
+
+https://www.openstreetmap.org/
+
+=== 概要
+
+[quote]
+____
+オープンストリートマップ（英語：OpenStreetMap, OSM）は自由に利用でき、なおかつ編集機能のある世界地図を作るための共同作業プロジェクトである。GPS機能を持った携帯端末、空中写真やほかの無料機械からのデータをもとに作られていくのが基本だが、編集ツール上で道一本から手入力での追加も可能である。
+____
+
+==== 特徴
+
+* 豊富なタグが用意されています（バリアフリー経路もOK）
+* だれでもマッピングができます
+* 世界中でマッピングが進んでいます
+image:https://cdn-images-1.medium.com/max/1621/1*i-XmNelA7y1BEsMCZ_fiXg.jpeg[]
+
+==== 応用例
+
+OSMのデータを使ってバリアフリーな経路案内をする試み
+
+.しあわせの村「だれでもナビ」
+image:https://lh3.googleusercontent.com/njpuJNDkiPbBjoIWZNS1v3SCcr4SGGbElNpTJNaTzKS9nLvxN6G3v5ObIBODLLB_Lw=w230[]
+
+=== 編集
+
+==== 主要な操作はウェブブラウザでOK
+
+image:https://upload.wikimedia.org/wikipedia/en/0/07/ID_map_editor_screenshot%2C_pre-alpha%2C_Nov_2012.png[]
+
+==== 必要なもの
+
+* PC
+
+* OSMのアカウント
+
+** 取得方法 link:http://learnosm.org/ja/beginner/start-osm/[OpenStreetMapを始めよう - LearnOSM]
+
+==== 編集方法
+
+ウェブブラウザでOSMを編集する「iDエディタ」を使います。 link:http://learnosm.org/ja/beginner/id-editor/[参考サイトはこちら]
+
+===== よく見る資料
+
+. link:http://wiki.openstreetmap.org/wiki/JA:Map_Features[主要なタグ一覧（地物、建物、道路、障害物）]
+. link:http://wiki.openstreetmap.org/wiki/JA:Key:highway[道路のタグ一覧]
+. link:http://wiki.openstreetmap.org/wiki/JA:%E6%AD%A9%E9%81%93[歩道について]
+
+===== 例示
+
+道路は highway タグで表現します。highway=unclassified など、さまざまな値が設定できますが、iDエディタでは「一般用道路」などと表現されているので、英語を意識せずとも使えると思います。
+
+
+歩道が車道と区別してマッピングされる場合、 link:http://wiki.openstreetmap.org/wiki/JA:Tag:highway%3Dfootway[footway] が使用されます。
+
+image:http://wiki.openstreetmap.org/w/images/thumb/4/4d/Path-footdesignated.jpg/200px-Path-footdesignated.jpg[]
+
+
+道路の表面については link:http://wiki.openstreetmap.org/wiki/JA:Key:surface[surface] で表現します。このほか、レンガや砂、土、未舗装なども定義可能です。すべてを説明するのは難しいので、道路の状況を正確に表現するためには、リンク先を参照してください。
+
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Transportation_in_Tanzania_Traffic_problems.JPG/200px-Transportation_in_Tanzania_Traffic_problems.JPG[]
+
+
+.例えば、車いす走行可能なアスファルトで舗装された歩道があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+highway,footway,歩道
+surface,asphalt,アスファルト。
+wheelchair,yes,車いすが走行可能
+|====
+
+
+歩道が車道の脇にある場合、 link:http://wiki.openstreetmap.org/wiki/JA:Key:sidewalk[sidewalk] で表現します。
+
+image:http://wiki.openstreetmap.org/w/images/thumb/b/b9/Sidewalk_and_zebra-crossing.jpg/240px-Sidewalk_and_zebra-crossing.jpg[]
+
+.例えば、一般道路の両脇に歩道があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+highway,unclassified,一般道路（2車線未満）
+sidewalk,both,両脇に歩道があるとき。このほか、値はboth / left / right / no のいずれを使用できます。
+|====
+
+
+縁石は link:http://wiki.openstreetmap.org/wiki/JA:Key:kerb[kerb] で表現します。
+
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Obrubnik.jpg/200px-Obrubnik.jpg[]
+
+.例えば、歩道と車道の間に車いすが通れなさそうな縁石があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+barrier,kerb,経路上に縁石など段差(階段はsteps)がある
+kerb,yes,縁石があり、車いすは通れない(wheelchair=no)ものとして扱われる
+|====
+
+.例えば、歩道と車道の間に高さ3cm未満の滑らかな縁石があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+barrier,kerb,経路上に縁石など段差がある
+kerb,lowered,車輪が引っかからない、滑らかなスロープ上の縁石で、視覚障がい者が「これは縁石やな」と分かるくらいの違いがある。
+|====
+
+.例えば、歩道と車道の間に高さ10cmの縁石があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+barrier,kerb,経路上に縁石など段差がある
+kerb:height,10cm,（注）3cmよりも大きい段差があるとき、通常の経路探索アプリでは車いす通行不可として処理されます
+
+|====
