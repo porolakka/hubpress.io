@@ -49,13 +49,57 @@ image:https://upload.wikimedia.org/wikipedia/en/0/07/ID_map_editor_screenshot%2C
 
 ** 取得方法 link:http://learnosm.org/ja/beginner/start-osm/[OpenStreetMapを始めよう - LearnOSM]
 
-==== よく見る資料
+==== 編集方法
+
+ウェブブラウザでOSMを編集する「iDエディタ」を使います。 link:http://learnosm.org/ja/beginner/id-editor/[参考サイトはこちら]
+
+===== よく見る資料
 
 . link:http://wiki.openstreetmap.org/wiki/JA:Map_Features[主要なタグ一覧（地物、建物、道路、障害物）]
 . link:http://wiki.openstreetmap.org/wiki/JA:Key:highway[道路のタグ一覧]
+. link:http://wiki.openstreetmap.org/wiki/JA:%E6%AD%A9%E9%81%93[歩道について]
+
+===== 例示
+
+道路は highway タグで表現します。highway=unclassified など、さまざまな値が設定できますが、iDエディタでは「一般用道路」などと表現されているので、英語を意識せずとも使えると思います。
 
 
-==== 例示
+歩道が車道と区別してマッピングされる場合、 link:http://wiki.openstreetmap.org/wiki/JA:Tag:highway%3Dfootway[footway] が使用されます。
+
+image:http://wiki.openstreetmap.org/w/images/thumb/4/4d/Path-footdesignated.jpg/200px-Path-footdesignated.jpg[]
+
+
+道路の表面については link:http://wiki.openstreetmap.org/wiki/JA:Key:surface[surface] で表現します。このほか、レンガや砂、土、未舗装なども定義可能です。すべてを説明するのは難しいので、道路の状況を正確に表現するためには、リンク先を参照してください。
+
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Transportation_in_Tanzania_Traffic_problems.JPG/200px-Transportation_in_Tanzania_Traffic_problems.JPG[]
+
+
+.例えば、車いす走行可能なアスファルトで舗装された歩道があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+highway,footway,歩道
+surface,asphalt,アスファルト。
+wheelchair,yes,車いすが走行可能
+|====
+
+
+歩道が車道の脇にある場合、 link:http://wiki.openstreetmap.org/wiki/JA:Key:sidewalk[sidewalk] で表現します。
+
+image:http://wiki.openstreetmap.org/w/images/thumb/b/b9/Sidewalk_and_zebra-crossing.jpg/240px-Sidewalk_and_zebra-crossing.jpg[]
+
+.例えば、一般道路の両脇に歩道があるとき
+[format="csv",options="header"]
+|====
+キー,値,どんなときに使う?
+highway,unclassified,一般道路（2車線未満）
+sidewalk,both,両脇に歩道があるとき。このほか、値はboth / left / right / no のいずれを使用できます。
+|====
+
+
+縁石は link:http://wiki.openstreetmap.org/wiki/JA:Key:kerb[kerb] で表現します。
+
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Obrubnik.jpg/200px-Obrubnik.jpg[]
 
 .例えば、歩道と車道の間に車いすが通れなさそうな縁石があるとき
 [format="csv",options="header"]
