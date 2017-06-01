@@ -6,6 +6,10 @@
 
 須磨海岸周辺のマッピングを行うにあたり、参考になる情報をまとめます。(随時追加）
 
+* OpenStreetMap (OSM) について
+* 実地調査
+* 編集
+
 In mapping around the Suma coast, we will summarize the information to be helpful. (Added as needed)
 
 == OpenStreetMap (OSM) について
@@ -21,25 +25,25 @@ ____
 オープンストリートマップ（英語：OpenStreetMap, OSM）は自由に利用でき、なおかつ編集機能のある世界地図を作るための共同作業プロジェクトである。GPS機能を持った携帯端末、空中写真やほかの無料機械からのデータをもとに作られていくのが基本だが、編集ツール上で道一本から手入力での追加も可能である。
 ____
 
-==== 特徴
+=== 特徴
 
 * 豊富なタグが用意されています（バリアフリー経路もOK）
 * だれでもマッピングができます
 * 世界中でマッピングが進んでいます
 image:https://cdn-images-1.medium.com/max/1621/1*i-XmNelA7y1BEsMCZ_fiXg.jpeg[]
 
-==== 応用例
+=== 応用例
 
 OSMのデータを使ってバリアフリーな経路案内をする試み
 
 .しあわせの村「だれでもナビ」
 image:https://lh3.googleusercontent.com/njpuJNDkiPbBjoIWZNS1v3SCcr4SGGbElNpTJNaTzKS9nLvxN6G3v5ObIBODLLB_Lw=w230[width=150px]
 
-=== 実地調査
+== 実地調査
 
 field papersなどの実地調査向けのサービス、iPhoneやAndroidのアプリを使うことで、マッピングが便利になります。
 
-==== 地図の分割(チーム分け)
+=== 地図の分割(チーム分け)
 
 下記のうち、PDFを印刷して、現地の様子を書き込みます。
 
@@ -62,7 +66,7 @@ field papersなどの実地調査向けのサービス、iPhoneやAndroidのア�
 ```
 
 
-==== あると便利なもの
+=== あると便利なもの
 
 * OSMに現地の写真をアップロードしてストリートビューっぽいことができるサービス
 
@@ -83,13 +87,15 @@ image:http://a5.mzstatic.com/jp/r30/Purple4/v4/1c/02/b3/1c02b3c4-2620-9002-8e97-
 
 
 
-=== 編集
+== 編集
 
-==== 主要な操作はウェブブラウザでOK
+須磨海岸周辺の経路が調査できましたか？次はデータ入力です。OSMの編集はWebブラウザから行います。
+
+=== 主要な操作はウェブブラウザでOK
 
 image:https://upload.wikimedia.org/wikipedia/en/0/07/ID_map_editor_screenshot%2C_pre-alpha%2C_Nov_2012.png[width=80%]
 
-==== 必要なもの
+=== 必要なもの
 
 * PC
 
@@ -97,17 +103,17 @@ image:https://upload.wikimedia.org/wikipedia/en/0/07/ID_map_editor_screenshot%2C
 
 ** 取得方法 link:http://learnosm.org/ja/beginner/start-osm/[OpenStreetMapを始めよう - LearnOSM]
 
-==== 編集方法
+=== 編集方法
 
 ウェブブラウザでOSMを編集する「iDエディタ」を使います。 link:http://learnosm.org/ja/beginner/id-editor/[参考サイトはこちら]
 
-===== よく見る資料
+==== よく見る資料
 
 . link:http://wiki.openstreetmap.org/wiki/JA:Map_Features[主要なタグ一覧（地物、建物、道路、障害物）]
 . link:http://wiki.openstreetmap.org/wiki/JA:Key:highway[道路のタグ一覧]
 . link:http://wiki.openstreetmap.org/wiki/JA:%E6%AD%A9%E9%81%93[歩道について]
 
-===== 例示
+==== タグの例示
 
 道路は highway タグで表現します。highway=unclassified など、さまざまな値が設定できますが、iDエディタでは「一般用道路」などと表現されているので、英語を意識せずとも使えると思います。
 
