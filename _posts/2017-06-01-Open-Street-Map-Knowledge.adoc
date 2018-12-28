@@ -1,4 +1,4 @@
-= 須磨海岸OSMマッピング調査
+= 須磨海岸OSM
 
 :hp-alt-title: OpenStreetMapKnowledge
 :hp-image: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Openstreetmap_logo.svg/1024px-Openstreetmap_logo.svg.png
